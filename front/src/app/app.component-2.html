@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="app.component-2.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+<body>
+    <section>
+        <div style="border: 1px solid red;">
+            <div class="heading">
+                <p>Hello World</p>
+                <select class="round">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <button>Button</button>
+      
+    <button mat-raised-button (click)="callmain('/app4')">Button_call_app3</button>
+
+            </div>
+        </div>
+        <div class="container-2">
+            <div class="left-section">
+                <mat-tree [dataSource]="fortreedataSource" [treeControl]="fortreetreeControl" class="example-tree">
+                    <!-- This is the tree node template for leaf nodes -->
+                    <!-- There is inline padding applied to this node using styles.
+                            This padding value depends on the mat-icon-button width. -->
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="expandNode(node)">
+                        <li class="example-tree-container">
+                            <div class="mat-tree-node">
+                                <button (click)="getfromtree_function_node(node.name, node);"
+                                    style="background-color: transparent  !important;" mat-button matTreeNodeToggle
+                                    [attr.aria-label]="'Toggle ' + node.name">
+
+
+                                    {{ node.name }}
+                                </button>
+                            </div>
+                            <ul class="example-tree-nested-node">
+                                <div *ngIf="fortreetreeControl.isExpanded(node)">
+                                    <ng-container matTreeNodeOutlet></ng-container>
+                                </div>
+                            </ul>
+                        </li>
+                    </mat-tree-node>
+                    <!-- This is the tree node template for expandable nodes -->
+                    <mat-nested-tree-node borderMain *matTreeNodeDef="let node; when: hasChild">
+                        <li class="example-tree-container">
+                            <div class="mat-tree-node">
+                                <button (click)="getfromtree_function(node.name, node);"
+                                    style="background-color: transparent  !important;" mat-button matTreeNodeToggle
+                                    [attr.aria-label]="'Toggle ' + node.name">
+
+                                    <mat-icon>
+                                        {{
+                                        fortreetreeControl.isExpanded(node)
+                                        ? "expand_more"
+                                        : "chevron_right"
+                                        }}
+                                    </mat-icon>
+                                    {{ node.name }}
+                                </button>
+                            </div>
+                            <ul class="example-tree-nested-node">
+                                <div *ngIf="fortreetreeControl.isExpanded(node)">
+                                    <ng-container matTreeNodeOutlet></ng-container>
+                                </div>
+                            </ul>
+                        </li>
+                    </mat-nested-tree-node>
+                </mat-tree>
+                <input class="input-tree" [(ngModel)]="selectedType2" (ngModelChange)="find_parent($event)"
+                    type="text" />
+                <label class="label-tree" *ngFor="let parent of parentNode">{{ parent + " , "}}</label>
+            </div>
+            <div class="right-section">
+                <div class="btn-holder" (click)="opendialog_function(dialog_1)">
+                    <button mat-raised-button>Dialog_1</button>
+                </div>
+                <div class="bottm-panel" style="width: 100%; overflow-y: auto; ">
+                    <p>table control</p>
+                    <div class="mat-elevation-z8_bottom">
+                        <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('id', $event)">
+                            <option *ngFor="let fruit1 of this.dataSource.data" [value]="fruit1.id">
+                                {{ fruit1.id }}
+                            </option>
+                        </select>
+                        <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('name', $event)">
+                            <option *ngFor="let uu of listnames" [value]="uu">{{ uu }}</option>
+                        </select>
+                        <select style="width: 25%" [(ngModel)]="fruit"
+                            (ngModelChange)="applyFilter3('progress', $event)">
+                            <option *ngFor="let uu of listprog" [value]="uu">{{ uu }}</option>
+                        </select>
+                        <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('fruit', $event)">
+                            <option *ngFor="let uu of listfruit" [value]="uu">{{ uu }}</option>
+                        </select>
+                        <input style="width: 98.5%" [(ngModel)]="leng" (ngModelChange)="onSelectChange2($event)"
+                            type="number" value="10" />
+                        <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+                            <!-- ID Column -->
+                            <ng-container matColumnDef="id">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                                <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                            </ng-container>
+                            <!-- Progress Column -->
+                            <ng-container matColumnDef="progress">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+                                <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                                <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+                            </ng-container>
+                            <!-- Fruit Column -->
+                            <ng-container matColumnDef="fruit">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fruit</th>
+                                <td mat-cell *matCellDef="let row">
+                                    {{ row.fruit }}
+                                </td>
+                            </ng-container>
+                            <!-- Button Columnsss -->
+                            <ng-container matColumnDef="button">
+                                <th mat-header-cell *matHeaderCellDef>Button</th>
+                                <td mat-cell *matCellDef="let row">
+                                    <button mat-raised-button matTooltip="Info about the action {{ row.id }}"
+                                        aria-label="Button that displays a tooltip when focused or hovered over"
+                                        (click)="expandRow($event, row)">
+                                        Button Text
+                                    </button>
+                                    <button style="font-size: 10px !important; background-color: blueviolet !important;"
+                                        mat-raised-button (click)="showdialog($event)">
+                                        this button for showing not to click on row function works
+                                    </button>
+                                    <button mat-raised-button (click)="opendialog_function(dialog_1)"
+                                        (click)="showdialog($event)">Dialog_final WITH noe row click</button>
+                                </td>
+                            </ng-container>
+                            <!-- Expanded Content -->
+                            <ng-container matColumnDef="expandedContent">
+                                <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+                                    <div class="collapse fade" [class.show]="isRowExpanded(row)">
+                                        <ul style="border: none; padding: none; margin: 0; top: 0">
+                                            <li style="border: none; padding: none; margin: 0; top: 0">
+                                                Nutritional value: {{ row.name }}
+                                            </li>
+                                            <li style="border: none; padding: none; margin: 0; top: 0">
+                                                Origin: {{ row.id }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                                (click)="select_rowclick($event, row)" [ngClass]="{'bold': clickedRows.has(row)}"
+                                [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+                            <tr mat-row *matRowDef="
+                            let row;
+                            columns: ['expandedContent'];
+                            when: isExpansionDetailRow
+                          " [hidden]="!isRowExpanded(row)"></tr>
+                        </table>
+
+
+                    </div>
+
+                </div>
+                <div>
+                    <h3>Click Log</h3>
+                </div>
+                <div *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+                <ul>
+                    <li *ngFor="let clickedRow of clickedRows">
+                        Clicked on {{ clickedRow.name }}
+                    </li>
+                </ul>
+                <mat-paginator [length]="pgsize" [pageSize]="leng" aria-label="Select page of GitHub search results">
+                </mat-paginator>
+            </div>
+        </div>
+        <div class="last-container">
+            <div>
+                <button (click)="callmain('/main')">Button_main</button>
+                <button>Button</button>
+            </div>
+            <div class="btn-holder" (click)="opendialog_function(dialog_1)">
+                <button mat-raised-button>Dialog_1</button>
+            </div>
+            <div class="bottm-panel" style="width: 100%; overflow-y: auto; ">
+                <p>table control</p>
+                <div class="mat-elevation-z8_bottom">
+                    <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('id', $event)">
+                        <option *ngFor="let fruit1 of this.dataSource.data" [value]="fruit1.id">
+                            {{ fruit1.id }}
+                        </option>
+                    </select>
+                    <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('name', $event)">
+                        <option *ngFor="let uu of listnames" [value]="uu">{{ uu }}</option>
+                    </select>
+                    <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('progress', $event)">
+                        <option *ngFor="let uu of listprog" [value]="uu">{{ uu }}</option>
+                    </select>
+                    <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('fruit', $event)">
+                        <option *ngFor="let uu of listfruit" [value]="uu">{{ uu }}</option>
+                    </select>
+                    <input style="width: 98.5%" [(ngModel)]="leng" (ngModelChange)="onSelectChange2($event)"
+                        type="number" value="10" />
+                    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                            <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                        </ng-container>
+                        <!-- Progress Column -->
+                        <ng-container matColumnDef="progress">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+                            <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+                        </ng-container>
+                        <!-- Fruit Column -->
+                        <ng-container matColumnDef="fruit">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Fruit</th>
+                            <td mat-cell *matCellDef="let row">
+                                {{ row.fruit }}
+                            </td>
+                        </ng-container>
+                        <!-- Button Columnsss -->
+                        <ng-container matColumnDef="button">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Button2</th>
+                            <td mat-cell *matCellDef="let row">
+                                <button mat-raised-button matTooltip="Info about the action {{ row.id }}"
+                                    aria-label="Button that displays a tooltip when focused or hovered over"
+                                    (click)="expandRow($event, row)">
+                                    Button Text
+                                </button>
+                                <button style="font-size: 10px !important; background-color: blueviolet !important;"
+                                    mat-raised-button (click)="showdialog($event)">
+                                    this button for showing not to click on row function works
+                                </button>
+                                <button mat-raised-button (click)="opendialog_function(dialog_1)"
+                                    (click)="showdialog($event)">Dialog_final WITH noe row click</button>
+                            </td>
+                        </ng-container>
+                        <!-- Expanded Content -->
+                        <ng-container matColumnDef="expandedContent">
+                            <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+                                <div class="collapse fade" [class.show]="isRowExpanded(row)">
+                                    <ul style="border: none; padding: none; margin: 0; top: 0">
+                                        <li style="border: none; padding: none; margin: 0; top: 0">
+                                            Nutritional value: {{ row.name }}
+                                        </li>
+                                        <li style="border: none; padding: none; margin: 0; top: 0">
+                                            Origin: {{ row.id }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"
+                            (click)="select_rowclick($event, row)" [ngClass]="{'bold': clickedRows.has(row)}"
+                            [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+                        <tr mat-row *matRowDef="
+                        let row;
+                        columns: ['expandedContent'];
+                        when: isExpansionDetailRow
+                      " [hidden]="!isRowExpanded(row)"></tr>
+                    </table>
+
+
+                </div>
+
+            </div>
+            <div>
+                <h3>Click Log</h3>
+            </div>
+            <div *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+            <ul>
+                <li *ngFor="let clickedRow of clickedRows">
+                    Clicked on {{ clickedRow.name }}
+                </li>
+            </ul>
+            <mat-paginator [length]="pgsize" [pageSize]="leng" aria-label="Select page of GitHub search results">
+            </mat-paginator>
+        </div>
+
+
+    </section>
+
+</body>
+
+</html>
+<ng-template #dialog_1>
+    <div>
+        <div class="heading">
+            <p>Hello World</p>
+
+            <select class="round">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <button mat-dialog-close matTooltip="Close this dialog" class="dialog-close-btn"
+                mat-raised-button>close</button>
+        </div>
+        <div class="btn-holder" (click)="opendialog_function(dialog_1)">
+            <button mat-raised-button>Dialog_1</button>
+        </div>
+        <div class="bottm-panel" style="width: 100%; overflow-y: auto; ">
+            <p>table control</p>
+            <div class="mat-elevation-z8_bottom">
+                <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('id', $event)">
+                    <option *ngFor="let fruit1 of this.dataSource.data" [value]="fruit1.id">
+                        {{ fruit1.id }}
+                    </option>
+                </select>
+                <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('name', $event)">
+                    <option *ngFor="let uu of listnames" [value]="uu">{{ uu }}</option>
+                </select>
+                <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('progress', $event)">
+                    <option *ngFor="let uu of listprog" [value]="uu">{{ uu }}</option>
+                </select>
+                <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('fruit', $event)">
+                    <option *ngFor="let uu of listfruit" [value]="uu">{{ uu }}</option>
+                </select>
+                <input style="width: 98.5%" [(ngModel)]="leng" (ngModelChange)="onSelectChange2($event)" type="number"
+                    value="10" />
+                <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                        <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+                    </ng-container>
+                    <!-- Progress Column -->
+                    <ng-container matColumnDef="progress">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+                        <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+                    </ng-container>
+                    <!-- Fruit Column -->
+                    <ng-container matColumnDef="fruit">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fruit</th>
+                        <td mat-cell *matCellDef="let row">
+                            {{ row.fruit }}
+                        </td>
+                    </ng-container>
+                    <!-- Button Columnsss -->
+                    <ng-container matColumnDef="button">
+                        <th mat-header-cell *matHeaderCellDef>Button</th>
+                        <td mat-cell *matCellDef="let row">
+                            <button mat-raised-button matTooltip="Info about the action {{ row.id }}"
+                                aria-label="Button that displays a tooltip when focused or hovered over"
+                                (click)="expandRow($event, row)">
+                                Button Text
+                            </button>
+                            <button style="font-size: 10px !important; background-color: blueviolet !important;"
+                                mat-raised-button (click)="showdialog($event)">
+                                this button for showing not to click on row function works
+                            </button>
+                            <button mat-raised-button (click)="opendialog_function(dialog_1)"
+                                (click)="showdialog($event)">Dialog_final WITH noe row click</button>
+                        </td>
+                    </ng-container>
+                    <!-- Expanded Content -->
+                    <ng-container matColumnDef="expandedContent">
+                        <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+                            <div class="collapse fade" [class.show]="isRowExpanded(row)">
+                                <ul style="border: none; padding: none; margin: 0; top: 0">
+                                    <li style="border: none; padding: none; margin: 0; top: 0">
+                                        Nutritional value: {{ row.name }}
+                                    </li>
+                                    <li style="border: none; padding: none; margin: 0; top: 0">
+                                        Origin: {{ row.id }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="select_rowclick($event, row)"
+                        [ngClass]="{'bold': clickedRows.has(row)}" [class.demo-row-is-clicked]="clickedRows.has(row)">
+                    </tr>
+                    <tr mat-row *matRowDef="
+                    let row;
+                    columns: ['expandedContent'];
+                    when: isExpansionDetailRow
+                  " [hidden]="!isRowExpanded(row)"></tr>
+                </table>
+
+
+            </div>
+
+        </div>
+        <div>
+            <h3>Click Log</h3>
+        </div>
+        <div *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+        <ul>
+            <li *ngFor="let clickedRow of clickedRows">
+                Clicked on {{ clickedRow.name }}
+            </li>
+        </ul>
+        <mat-paginator [length]="pgsize" [pageSize]="leng" aria-label="Select page of GitHub search results">
+        </mat-paginator>
+    </div>
+</ng-template>

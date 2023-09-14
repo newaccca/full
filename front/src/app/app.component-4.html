@@ -1,0 +1,238 @@
+<div>
+  <!-- align="center" style="vertical-align: middle;" -->
+  <div align="center" >
+    <select style="width: 60%;" id="value_dcombobox">
+      <option multiple *ngFor="let option of options">{{ option }}</option>
+    </select>
+  </div>
+  <mat-divider></mat-divider>
+  <div  align="center">
+    <input style="width: 60%;" matInput placeholder="Ex. Pizza" id="value_dtextbox">
+  </div>
+  <mat-divider></mat-divider>
+  <div align="center">
+    <mat-form-field style="width: 60%; position: relative;">
+      <mat-label>Favorite food</mat-label>
+      <mat-select [(ngModel)]="this.goten_value_dcombobox_Check" multiple (ngModelChange)="error_check()">
+        <mat-option>-- None --</mat-option>
+        <mat-optgroup [class.isbold]="selectedFood.includes(food)" (click)="group_fun($event , food)" *ngFor="let food of optg">
+          {{food}}
+          <mat-option (click)="stoppad($event ,uu)" *ngFor="let uu of optionsMap[food]" [value]="uu">
+            {{uu}}
+          </mat-option>
+          <mat-divider></mat-divider>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <mat-label style="color: red; position: absolute;">{{error}}</mat-label>
+  </div>
+  <mat-divider></mat-divider>
+  <div align="center">
+    <mat-checkbox *ngFor="let option of options; let i = index" [(ngModel)]="goten_value_dcheck[i]"
+      class="example-margin">{{option}}</mat-checkbox>
+  </div>
+  <mat-divider></mat-divider>
+  <div align="center">
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+      [(ngModel)]="goten_value_dradio_btn">
+      <mat-radio-button class="example-radio-button" *ngFor="let season of options" [value]="season">
+        {{season}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-divider></mat-divider>
+
+<div align="center">
+   <button mat-raised-button (click)="save_from_html_function()"> Save
+  </button>
+  <button mat-raised-button (click)="save_from_html_toclickeddb_function()"> Save clicked
+  </button>
+  <button mat-raised-button (click)="save_from_html_todb_function()"> Save to db
+  </button>
+</div>
+<mat-divider></mat-divider>
+
+<div align="center">
+  <button style="width: 25%;" mat-raised-button (click)="pupblic_opendialog_function(delete_dialog, 'auto' , 'auto')"> Clear db
+  </button>
+  <button style="width: 25%;" mat-raised-button (click)="pupblic_opendialog_function(delete_clicked_dialog, 'auto' , 'auto')"> Clear clicked
+  </button>
+
+</div>
+  <mat-divider></mat-divider>
+  <div align="center" class="btn-holder">
+    <button mat-raised-button (click)="opendialog_function(dialog_1)">Dialog_1</button>
+  </div>
+  <div align="center" class="bottm-panel" style="width: 100%; overflow-y: auto; ">
+    <p>table control</p>
+    <div  class="mat-elevation-z8_bottom">
+
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dcombobox', $event)">
+        <option *ngFor="let uu of filter_dcombobox" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dcombobox_Check', $event)">
+        <option *ngFor="let uu of filter_dcombobox_Check" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dtextbox', $event)">
+        <option *ngFor="let uu of filter_dtextbox" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dradio_btn', $event)">
+        <option *ngFor="let uu of filter_dradio_btn" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dcheck', $event)">
+        <option *ngFor="let uu of filter_dcheck" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: auto" [(ngModel)]="empty_data" (ngModelChange)="applyFilter3('dtoggle', $event)">
+        <option *ngFor="let uu of filter_dtoggle" [value]="uu">{{ uu }}</option>
+      </select>
+      <input id="leng" style="width: 98.5%" [(ngModel)]="leng" (ngModelChange)="onSelectChange2($event)" type="number"
+        value="10" />
+      <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+        <ng-container matColumnDef="dcombobox">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dcombobox</th>
+          <td mat-cell *matCellDef="let row">{{ row.dcombobox }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dcombobox_Check">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dcombobox_Check</th>
+          <td mat-cell *matCellDef="let row">{{ row.dcombobox_Check }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dtextbox">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dtextbox</th>
+          <td mat-cell *matCellDef="let row">{{ row.dtextbox }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dradio_btn">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dradio_btn</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dradio_btn }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dcheck">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dcheck</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dcheck }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dtoggle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>dtoggle</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dtoggle }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="select_rowclick($event, row)"
+          [ngClass]="{'bold': clickedRows.has(row)}" [class.bold]="isRowClicked(row)" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+      </table>
+    </div>
+  </div>
+  <mat-paginator [length]="pgsize" [pageSize]="leng">
+  </mat-paginator>
+  <div align="center">
+    <h3>Click Log</h3>
+  </div>
+  <div align="center" *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+  <ul>
+    <li *ngFor="let clickedRow of clickedRows">
+      Clicked on {{ clickedRow.dcombobox_Check }}
+    </li>
+  </ul>
+</div>
+<ng-template #delete_dialog>
+<div  style=" display: flex; flex-direction: column; justify-content: center; align-items: center; width: 450px; height: 225px; border: 2.25px solid red; border-radius: 4px;">
+  <div  >
+    <mat-form-field>
+      <mat-label>Your db Secret</mat-label>
+      <input style="width: 40%;" matInput placeholder="******" type="password" (change)="novali((validation.value),delete_dialog)" id="validation" #validation>
+    </mat-form-field>
+    <mat-label style="width: auto; color: red; position: absolute;">{{novalidata}}</mat-label>
+
+  </div>
+<div style="  display: flex;justify-content: center; align-items: center;">
+  <button mat-raised-button (click)="delete_from_db_function(validation.value)"> Yes
+  </button>
+   <button mat-raised-button (click)="public_clsoe_Dialog()"> No
+  </button>
+</div>
+</div>
+</ng-template>
+<ng-template #delete_clicked_dialog>
+  <div  style=" display: flex; flex-direction: column; justify-content: center; align-items: center; width: 450px; height: 225px; border: 2.25px solid red; border-radius: 4px;">
+    <div  >
+      <mat-form-field>
+        <mat-label>Your db Secret</mat-label>
+        <input style="width: 40%;" matInput placeholder="******" type="password" (change)="novali((validation2.value),delete_clicked_dialog )" id="validation2" #validation2>
+      </mat-form-field>
+      <mat-label style="width: auto; color: red; position: absolute;">{{novalidata}}</mat-label>
+
+    </div>
+  <div style="  display: flex;justify-content: center; align-items: center;">
+    <button mat-raised-button (click)="delete_from_clicked_db_function(validation2.value)"> Yes
+    </button>
+     <button mat-raised-button (click)="public_clsoe_Dialog()"> No
+    </button>
+  </div>
+  </div>
+  </ng-template>
+<ng-template #dialog_1>
+  <div align="center" class="bottm-panel" style="width: 100%; overflow-y: auto; ">
+    <div style="overflow-x: autoweb; max-height: 550px;">
+      <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+        <ng-container matColumnDef="dcombobox">
+          <th mat-header-cell *matHeaderCellDef>dcombobox</th>
+          <td mat-cell *matCellDef="let row">{{ row.dcombobox }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dcombobox_Check">
+          <th mat-header-cell *matHeaderCellDef>dcombobox_Check</th>
+          <td mat-cell *matCellDef="let row">{{ row.dcombobox_Check }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dtextbox">
+          <th mat-header-cell *matHeaderCellDef>dtextbox</th>
+          <td mat-cell *matCellDef="let row">{{ row.dtextbox }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dradio_btn">
+          <th mat-header-cell *matHeaderCellDef>dradio_btn</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dradio_btn }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dcheck">
+          <th mat-header-cell *matHeaderCellDef>dcheck</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dcheck }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="dtoggle">
+          <th mat-header-cell *matHeaderCellDef>dtoggle</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dtoggle }}
+          </td>
+        </ng-container>
+        <!-- Expanded Content -->
+        <ng-container matColumnDef="expandedContent">
+          <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+            <div class="collapse fade" [class.show]="isRowExpanded(row)">
+              <ul style="border: none; padding: none; margin: 0; top: 0">
+                <li style="border: none; padding: none; margin: 0; top: 0">
+                  Nutritional value: {{ row.dcombobox_Check }}
+                </li>
+                <li style="border: none; padding: none; margin: 0; top: 0">
+                  Origin: {{ row.dcombobox }}
+                </li>
+              </ul>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="expandRow($event, row)"
+          [ngClass]="{'bold': clickedRows.has(row)}" [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+        <tr mat-row *matRowDef="
+                let row;
+                columns: ['expandedContent'];
+                when: isExpansionDetailRow
+              " [hidden]="!isRowExpanded(row)"></tr>
+      </table>
+      <mat-paginator [length]="dialog_pgsize" [pageSize]="dialog_leng" aria-label="Select page of GitHub search results">
+      </mat-paginator>
+    </div>
+
+  </div>
+</ng-template>

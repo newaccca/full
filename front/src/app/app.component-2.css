@@ -1,0 +1,161 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Rubik", sans-serif;
+    line-height: 1;
+    font-weight: 400;
+    color: #555;
+}
+
+.heading {
+    display: flex;
+    width: 35rem;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+select {
+
+    /* styling */
+    background-color: white;
+    border: thin solid blue;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+
+    /* reset */
+
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+select.round {
+    background-image:
+        linear-gradient(45deg, transparent 50%, gray 50%),
+        linear-gradient(135deg, gray 50%, transparent 50%),
+        radial-gradient(#ddd 70%, transparent 72%);
+    background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px),
+        calc(100% - .5em) .5em;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1.5em 1.5em;
+    background-repeat: no-repeat;
+}
+
+select.round:focus {
+    background-image:
+        linear-gradient(45deg, white 50%, transparent 50%),
+        linear-gradient(135deg, transparent 50%, white 50%),
+        radial-gradient(gray 70%, transparent 72%);
+    background-position:
+        calc(100% - 15px) 1em,
+        calc(100% - 20px) 1em,
+        calc(100% - .5em) .5em;
+    background-size:
+        5px 5px,
+        5px 5px,
+        1.5em 1.5em;
+    background-repeat: no-repeat;
+
+    border-color: green;
+    outline: 0;
+}
+
+.container-2 {
+    display: flex;
+    border: 2px solid rgb(233, 15, 15);
+}
+
+.left-section {
+    width: 650px;
+    border: 3px solid rgb(0, 0, 0);
+
+}
+.hidden{
+    display: none;
+}
+.right-section {
+    position: relative;
+    width: 650px;
+    border: 3px solid rgb(0, 0, 0);
+    
+}
+
+.btn-holder {
+    display: flex;
+    justify-content: end;
+
+}
+
+.last-container {
+    border: 2px solid rgb(233, 15, 15);
+
+}
+
+
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.example-tree-container {
+    border-bottom: 0;
+}
+
+ul {
+    padding-left: 40px;
+}
+
+li {
+    padding-left: 40px;
+    border: 3px dotted rgb(29, 219, 55);
+    border-width: 0 0 3px 3px;
+    position: relative;
+    top: -24px;
+}
+
+li.mat-tree-node,
+li div {
+    margin: 0;
+    position: relative;
+    top: 24px;
+}
+
+li ul {
+    border-top: 3px dotted rgb(29, 219, 55);
+    margin-left: -40px;
+    padding-left: 60px;
+}
+
+.mat-nested-tree-node:last-child ul {
+    margin-left: -41px;
+}
+
+.bold {
+    font-weight: bold;
+}

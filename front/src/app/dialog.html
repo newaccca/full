@@ -1,0 +1,12 @@
+
+<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
+<button mat-raised-button mat-dialog-close matTooltip="Action"
+    aria-label="Button that displays a tooltip when focused or hovered over">
+    Close Hove
+</button>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+
+
+</mat-dialog-actions>

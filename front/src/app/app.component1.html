@@ -1,0 +1,222 @@
+<button mat-raised-button (click)="onSelectChange2(10)" matTooltip="Info about the action ???"
+  aria-label="Button that displays a tooltip when focused or hovered over">
+  Action
+</button>
+
+<button mat-raised-button (click)="routetoapp2()" matTooltip="go to app2 ???">
+  app2
+</button>
+<div>
+  
+  <mat-tree [dataSource]="fortreedataSource" [treeControl]="fortreetreeControl" class="example-tree">
+    <!-- This is the tree node template for leaf nodes -->
+    <!-- There is inline padding applied to this node using styles.
+            This padding value depends on the mat-icon-button width. -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="expandNode(node)">
+      <li class="example-tree-container">
+        <div class="mat-tree-node">
+          <button style="background-color: transparent  !important;" mat-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+
+
+            {{ node.name }}
+          </button>
+        </div>
+        <ul class="example-tree-nested-node">
+          <div *ngIf="fortreetreeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+          </div>
+        </ul>
+      </li>
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-nested-tree-node borderMain *matTreeNodeDef="let node; when: hasChild">
+      <li class="example-tree-container">
+        <div class="mat-tree-node">
+          <button style="background-color: transparent  !important;" mat-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+
+            <mat-icon>
+              {{
+              fortreetreeControl.isExpanded(node)
+              ? "expand_more"
+              : "chevron_right"
+              }}
+            </mat-icon>
+            {{ node.name }}
+          </button>
+        </div>
+        <ul class="example-tree-nested-node">
+          <div *ngIf="fortreetreeControl.isExpanded(node)">
+            <ng-container matTreeNodeOutlet></ng-container>
+          </div>
+        </ul>
+      </li>
+    </mat-nested-tree-node>
+  </mat-tree>
+  <input class="input-tree" [(ngModel)]="selectedType2" (ngModelChange)="find_parent($event)" type="text" />
+  <label class="label-tree" *ngFor="let parent of parentNode">{{ parent + " , "}}</label>
+  <!-- <button class="testbtn" style="width: 10%;" (click)="find_parent()"> click find</button>  -->
+</div>
+<button mat-raised-button (click)="calloninit()" matTooltip="Info about the action1111"
+  aria-label="Button that displays a tooltip when focused or hovered over">
+  Action2
+</button>
+<input class="inp2" id="tree-input-value" type="{{ onTypeChange(selectedType) }}" />
+<select id="select-type" [(ngModel)]="selectedType" (ngModelChange)="onTypeChange($event)">
+  <option value="text">Text</option>
+  <option value="number">Number</option>
+  <option value="password">Password</option>
+  <option value="email">Email</option>
+  <option value="date">Date</option>
+</select>
+<div class="mat-slide-toggle" style="background-color: transparent !important; background: transparent;">
+
+  <mat-slide-toggle>Toggle me!</mat-slide-toggle>
+
+</div>
+<div>
+  <div class="bottm-panel" style="width: 100%; overflow-y: auto; max-height: 50%">
+    <p>table control</p>
+    <div class="mat-elevation-z8_bottom">
+      <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('id', $event)">
+        <option *ngFor="let fruit1 of this.dataSource.data" [value]="fruit1.id">
+          {{ fruit1.id }}
+        </option>
+      </select>
+      <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('name', $event)">
+        <option *ngFor="let uu of listnames" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('progress', $event)">
+        <option *ngFor="let uu of listprog" [value]="uu">{{ uu }}</option>
+      </select>
+      <select style="width: 25%" [(ngModel)]="fruit" (ngModelChange)="applyFilter3('fruit', $event)">
+        <option *ngFor="let uu of listfruit" [value]="uu">{{ uu }}</option>
+      </select>
+      <input style="width: 98.5%" [(ngModel)]="leng" (ngModelChange)="onSelectChange2($event)" type="number"
+        value="10" />
+      <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+        </ng-container>
+        <!-- Progress Column -->
+        <ng-container matColumnDef="progress">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+          <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
+        <!-- Fruit Column -->
+        <ng-container matColumnDef="fruit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fruit</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.fruit }}
+          </td>
+        </ng-container>
+        <!-- Button Columnsss -->
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef>Button</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-raised-button matTooltip="Info about the action {{ row.id }}"
+              aria-label="Button that displays a tooltip when focused or hovered over" (click)="expandRow($event, row)">
+              Button Text
+            </button>
+            <button mat-raised-button (click)="Dig1.showModal()" (click)="showdialog($event)">
+              Dialog 111
+            </button>
+            <button mat-raised-button (click)="opendiggg()">Dialog</button>
+            <button mat-raised-button (click)="oppndig(temp,(row.id),row.name)"
+              (click)="showdialog($event)">Dialog_final</button>
+          </td>
+        </ng-container>
+        <!-- Expanded Content -->
+        <ng-container matColumnDef="expandedContent">
+          <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+            <div class="collapse fade" [class.show]="isRowExpanded(row)">
+              <ul style="border: none; padding: none; margin: 0; top: 0">
+                <li style="border: none; padding: none; margin: 0; top: 0">
+                  Nutritional value: {{ row.name }}
+                </li>
+                <li style="border: none; padding: none; margin: 0; top: 0">
+                  Origin: {{ row.id }}
+                </li>
+              </ul>
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="rowclick($event, row)"
+          [class.demo-row-is-clicked]="clickedRows.has(row)"></tr>
+        <tr mat-row *matRowDef="
+            let row;
+            columns: ['expandedContent'];
+            when: isExpansionDetailRow
+          " [hidden]="!isRowExpanded(row)"></tr>
+      </table>
+
+      <div>
+        <h3>Click Log</h3>
+      </div>
+      <div *ngIf="!clickedRows.size">Clicked rows will be logged here</div>
+      <ul>
+        <li *ngFor="let clickedRow of clickedRows">
+          Clicked on {{ clickedRow.name }}
+        </li>
+      </ul>
+      <mat-paginator [length]="pgsize" [pageSize]="leng" aria-label="Select page of GitHub search results">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+<!-- fgdgdgd -->
+<dialog class="dd" mat-dialog-content #Dig1>
+  <div class="divya">
+    <button mat-raised-button matTooltip="Action" matTooltipPosition="above"
+      aria-label="Button that displays a tooltip when focused or hovered over" (click)="Dialog.close()">
+      Close Hove
+    </button>
+
+    <button mat-raised-button matTooltip="Action 2"
+      aria-label="Button that displays a tooltip when focused or hovered over" (click)="Dialog.close()">
+      Close action2
+    </button>
+  </div>
+</dialog>
+
+<dialog #Dialog>
+  <button mat-raised-button matTooltip="Action" aria-label="Button that displays a tooltip when focused or hovered over"
+    (click)="Dialog.close()">
+    Close Hove
+  </button>
+
+  <button mat-raised-button class="btttn" matTooltip="text" matTooltipPosition="above"
+    aria-label="Button that displays a tooltip when focused or hovered over" (click)="Dialog.close()">
+    Close Hove
+  </button>
+  <button mat-raised-button (click)="Dialog.close()">Close 1</button>
+</dialog>
+
+<!-- // temp -->
+<ng-template #temp>
+  <h1 mat-dialog-title>Stupid dialog</h1>
+  <input ng-required="expression" class="inp22" id="1tree-input-value" type="text" />
+
+  <div mat-dialog-title>row id : {{daata.id}}</div>
+  <div>row name: {{daata.name}}</div>
+  <div mat-dialog-content>hal enta zehet ?</div>
+  <button mat-raised-button mat-dialog-close matTooltip="Action"
+    aria-label="Button that displays a tooltip when focused or hovered over">
+    Close Hove
+  </button>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>aaaaaaaaahhhhh</button>
+
+
+  </mat-dialog-actions>
+</ng-template>

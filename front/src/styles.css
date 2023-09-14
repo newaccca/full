@@ -1,0 +1,214 @@
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.setBorder {
+  border-bottom: 1.5px solid rgb(207, 38, 38);
+  margin-left: 5px;
+  width: 30px;
+  height: 0px;
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+
+.borderMain {
+  border-left: 1px solid black;
+}
+
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+/*
+   * Padding for leaf nodes.
+   * Leaf nodes need to have padding so as to align with other non-leaf nodes
+   * under the same parent.
+   */
+.example-tree div[role=group]>.mat-tree-node {
+  padding-left: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+
+dialog ::backdrop {
+  width: 500px !important;
+  height: 500px !important;
+}
+
+dialog:modal {
+  z-index: -10 !important;
+  inset-block-end: 1px !important;
+
+}
+
+dialog[open] {
+  display: contents !important;
+}
+
+
+/* 
+.mat-mdc-tooltip {}
+
+.mdc-tooltip__surface {
+  color: aqua !important;
+  z-index: 9999999999999999999 !important;
+  padding: 0px !important;
+  margin: 0px !important;
+
+  background-color: salmon !important;
+
+}
+
+.cdk-overlay-container {}
+
+.mat-tooltip {
+  font-size: 60px !important;
+
+  overflow: visible !important;
+} */
+
+/* tree dotssssss */
+.example-tree-progress-bar {
+  margin-left: 30px;
+}
+
+.example-tree-nested-node {
+  padding-left: 30px;
+}
+
+mat-tree {
+  margin-left: 40px;
+}
+
+.mat-tree-node {
+  padding: 0;
+  background-color: white;
+}
+
+.mat-nested-tree-node {
+  top: -24px;
+}
+
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.example-tree-container {
+  border-bottom: 0;
+}
+
+ul {
+  padding-left: 40px;
+}
+
+li {
+  padding-left: 40px;
+  border: 3px dotted rgb(29, 219, 55);
+  border-width: 0 0 3px 3px;
+  position: relative;
+  top: -24px;
+}
+
+li.mat-tree-node,
+li div {
+  margin: 0;
+  position: relative;
+  top: 24px;
+}
+
+li ul {
+  border-top: 3px dotted rgb(29, 219, 55);
+  margin-left: -40px;
+  padding-left: 60px;
+}
+
+.mat-nested-tree-node:last-child ul {
+  margin-left: -41px;
+}
+
+.mat-icon-button {
+  z-index: 100;
+}
+.mat-slide-toggle{
+  background-color: white !important;
+}
+.mdc-switch.mdc-switch--selected:enabled .mdc-switch__icon {
+
+}
+/* .mdc-switch:enabled .mdc-switch__track::after {
+  background: red !important;
+}
+.mdc-switch:enabled .mdc-switch__track::before {
+  background: aquamarine !important;
+} */
+.mat-mdc-slide-toggle,
+ .mat-mdc-slide-toggle.mat-accent  {
+  --mdc-switch-selected-focus-state-layer-color: #5e35b1;
+  --mdc-switch-selected-handle-color: #5e35b1;
+  --mdc-switch-selected-hover-state-layer-color: #5e35b1;
+  --mdc-switch-selected-pressed-state-layer-color: #5e35b1;
+  --mdc-switch-selected-focus-handle-color: #311b92;
+  --mdc-switch-selected-hover-handle-color: #311b92;
+  --mdc-switch-selected-pressed-handle-color: #311b92;
+  --mdc-switch-selected-focus-track-color: #9575cd;
+  --mdc-switch-selected-hover-track-color: #9575cd;
+  --mdc-switch-selected-pressed-track-color: #9575cd;
+  --mdc-switch-selected-track-color: #9575cd;
+  --mdc-switch-disabled-selected-handle-color: #424242;
+  --mdc-switch-disabled-selected-icon-color: #fff;
+  --mdc-switch-disabled-selected-track-color: #424242;
+  --mdc-switch-disabled-unselected-handle-color: #424242;
+  --mdc-switch-disabled-unselected-icon-color: #fff;
+  --mdc-switch-disabled-unselected-track-color: #424242;
+  --mdc-switch-handle-surface-color: var(--mdc-theme-surface, #fff);
+  --mdc-switch-handle-elevation-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  --mdc-switch-handle-shadow-color: black;
+  --mdc-switch-disabled-handle-elevation-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+  --mdc-switch-selected-icon-color: #fff;
+  --mdc-switch-unselected-focus-handle-color: #212121;
+  --mdc-switch-unselected-focus-state-layer-color: #424242;
+  --mdc-switch-unselected-focus-track-color: #e0e0e0;
+  --mdc-switch-unselected-handle-color: #616161;
+  --mdc-switch-unselected-hover-handle-color: #212121;
+  --mdc-switch-unselected-hover-state-layer-color: #424242;
+  --mdc-switch-unselected-hover-track-color: #e0e0e0;
+  --mdc-switch-unselected-icon-color: #fff;
+  --mdc-switch-unselected-pressed-handle-color: #212121;
+  --mdc-switch-unselected-pressed-state-layer-color: #424242;
+  --mdc-switch-unselected-pressed-track-color: #e0e0e0;
+  --mdc-switch-unselected-track-color: #e0e0e0;
+}

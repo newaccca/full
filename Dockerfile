@@ -22,11 +22,11 @@ WORKDIR /app
 # Copy the output directory from your build stage into our new container.
 COPY ./back .
 
-# Configure the listening port to 80
-ENV ASPNETCORE_URLS=http://+:80
+# Configure the listening port to 8080
+ENV ASPNETCORE_URLS=http://+:8080
 
-# Expose port 80
-EXPOSE 80
+# Expose port 8080
+EXPOSE 8080
 
 # Start the app.
 ENTRYPOINT ["dotnet", "WebApplication3.dll"]

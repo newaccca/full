@@ -17,16 +17,16 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
 # Set the working directory.
-WORKDIR /app
+WORKDIR /app2
 
 # Copy the output directory from your build stage into our new container.
 COPY ./back .
 
-# Configure the listening port to 8080
-ENV ASPNETCORE_URLS=http://+:8080
+# Configure the listening port to 5241
+ENV ASPNETCORE_URLS=http://+:5241
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 5241
+EXPOSE 5241
 
 # Start the app.
 ENTRYPOINT ["dotnet", "WebApplication3.dll"]
